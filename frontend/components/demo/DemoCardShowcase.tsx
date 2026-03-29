@@ -1,20 +1,18 @@
 "use client";
 
 import { Button, Card } from "@/components/library";
+import { DemoSection } from "@/components/demo/DemoSection";
 
 export function DemoCardShowcase() {
   return (
-    <section
-      className="mx-auto w-full max-w-6xl"
-      aria-labelledby="card-heading"
+    <DemoSection
+      id="card-heading"
+      eyebrow="03 · Card"
+      title="Bordes, tonos e imagen"
+      description="Variantes de borde (solid, thick, double), tonos de marca y tarjeta con imagen superior opcional."
+      tone="violet"
     >
-      <h2
-        id="card-heading"
-        className="m-0 mb-4 text-center font-mono text-sm font-bold text-neutral-800"
-      >
-        Card — bordes, tonos e imagen
-      </h2>
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <Card
           borderVariant="solid"
           tone="primary"
@@ -26,7 +24,8 @@ export function DemoCardShowcase() {
           }
         >
           <p className="m-0 text-sm">
-            Variante <code className="font-bold">solid</code>.
+            Variante <code className="font-bold">solid</code> con sombra
+            contundente.
           </p>
         </Card>
         <Card
@@ -34,7 +33,9 @@ export function DemoCardShowcase() {
           tone="secondary"
           header="Thick · secondary"
         >
-          <p className="m-0 text-sm">Borde grueso y sombra secundaria.</p>
+          <p className="m-0 text-sm">
+            Borde grueso y paleta secundaria para jerarquía suave.
+          </p>
         </Card>
         <Card
           borderVariant="double"
@@ -46,10 +47,10 @@ export function DemoCardShowcase() {
             </Button>
           }
         >
-          <p className="m-0 text-sm">Doble borde y tono danger.</p>
+          <p className="m-0 text-sm">Doble trazo y tono de alerta o acción crítica.</p>
         </Card>
         <Card
-          className="sm:col-span-2 lg:col-span-1 xl:col-span-1"
+          className="sm:col-span-2 lg:col-span-3 xl:col-span-1"
           tone="secondary"
           imageSrc="https://picsum.photos/seed/brutalist-card/600/340"
           imageAlt="Imagen de ejemplo"
@@ -61,10 +62,12 @@ export function DemoCardShowcase() {
           }
         >
           <p className="m-0 text-sm">
-            <code className="font-bold">imageSrc</code> sobre el cuerpo.
+            Prop <code className="font-bold">imageSrc</code> con{" "}
+            <code className="font-bold">imageAlt</code> obligatorio para
+            accesibilidad.
           </p>
         </Card>
       </div>
-    </section>
+    </DemoSection>
   );
 }
