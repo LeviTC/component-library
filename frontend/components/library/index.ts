@@ -6,6 +6,7 @@ export { Spinner } from "./Spinner";
 
 export { CloseIcon } from "./icons/CloseIcon";
 export { PlusIcon } from "./icons/PlusIcon";
+export { ChevronRightIcon } from "./icons/ChevronRightIcon";
 export { EyeHideIcon, EyeShowIcon } from "./icons/PasswordVisibilityIcons";
 
 export type {
