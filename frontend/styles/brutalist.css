@@ -1,0 +1,716 @@
+/* Inspirado en Uiverse.io / 0xnihilism — variables en styles/design-tokens.css (generado desde lib/design-tokens.ts). */
+
+/* ——— Input: misma doble sombra que los botones; sin animaciones al foco ——— */
+
+.brutalist-field {
+  position: relative;
+  width: 100%;
+  min-width: 10rem;
+  max-width: 100%;
+  padding-top: 2.25rem;
+  /* espacio para que no recorten el segundo bloque (derecha / abajo) */
+  padding-right: 14px;
+  padding-bottom: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.brutalist-input-shell {
+  position: relative;
+  overflow: visible;
+}
+
+.brutalist-input-shell--has-toggle .brutalist-input {
+  padding-right: 3rem;
+}
+
+.brutalist-input-shell--has-toggle .brutalist-input.brutalist-input--sm {
+  padding-right: 2.5rem;
+}
+
+.brutalist-input-shell--has-toggle .brutalist-input.brutalist-input--lg {
+  padding-right: 3.25rem;
+}
+
+.brutalist-input-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 3px solid var(--brutalist-black);
+  background-color: var(--brutalist-white);
+  color: var(--brutalist-black);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.brutalist-input-toggle:hover:not(:disabled) {
+  background-color: var(--brutalist-primary);
+  color: var(--brutalist-white);
+}
+
+.brutalist-input-toggle:focus-visible {
+  outline: 2px solid var(--brutalist-accent);
+  outline-offset: 2px;
+}
+
+.brutalist-input-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.brutalist-input-shell--has-toggle.brutalist-input-shell--sm .brutalist-input-toggle {
+  width: 2rem;
+  height: 2rem;
+  right: 8px;
+}
+
+.brutalist-input-shell--has-toggle.brutalist-input-shell--lg .brutalist-input-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  right: 12px;
+}
+
+.brutalist-input-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.brutalist-input-shell--lg .brutalist-input-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.brutalist-input-shell--sm .brutalist-input-toggle svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.brutalist-input {
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--brutalist-black);
+  background-color: var(--brutalist-white);
+  border: 4px solid var(--brutalist-black);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-accent);
+}
+
+.brutalist-input--sm {
+  padding: 10px 12px;
+  font-size: 14px;
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-accent);
+}
+
+.brutalist-input--lg {
+  padding: 18px 16px;
+  font-size: 20px;
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-accent);
+}
+
+.brutalist-input--error {
+  border-color: var(--brutalist-danger);
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-danger);
+}
+
+.brutalist-input--error.brutalist-input--sm {
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-danger);
+}
+
+.brutalist-input--error.brutalist-input--lg {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-danger);
+}
+
+.brutalist-input--success {
+  border-color: var(--brutalist-success);
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-success);
+}
+
+.brutalist-input--success.brutalist-input--sm {
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-success);
+}
+
+.brutalist-input--success.brutalist-input--lg {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-success);
+}
+
+/* Foco: solo cambio de borde, sin pulse ni gradientes */
+.brutalist-input-shell:focus-within
+  .brutalist-input:not(.brutalist-input--error):not(.brutalist-input--success):not(:disabled) {
+  border-color: var(--brutalist-accent);
+}
+
+.brutalist-field--error .brutalist-input-shell:focus-within .brutalist-input:not(:disabled) {
+  border-color: #7f1d1d;
+}
+
+.brutalist-field--success .brutalist-input-shell:focus-within .brutalist-input:not(:disabled) {
+  border-color: #166534;
+}
+
+.brutalist-input::placeholder {
+  color: var(--brutalist-placeholder);
+  transition: color 0.3s ease;
+}
+
+.brutalist-input-shell:focus-within .brutalist-input::placeholder {
+  color: transparent;
+}
+
+.brutalist-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  box-shadow: 3px 3px 0 var(--brutalist-black),
+    6px 6px 0 color-mix(in srgb, var(--brutalist-primary) 35%, transparent);
+}
+
+.brutalist-label {
+  position: absolute;
+  left: -3px;
+  top: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brutalist-white);
+  background-color: var(--brutalist-black);
+  padding: 5px 10px;
+  transform: rotate(-1deg);
+  z-index: 4;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.brutalist-field:focus-within .brutalist-label {
+  transform: rotate(0deg);
+  background-color: var(--brutalist-accent);
+}
+
+.brutalist-field--error:focus-within .brutalist-label {
+  background-color: var(--brutalist-danger);
+}
+
+.brutalist-field--success:focus-within .brutalist-label {
+  background-color: var(--brutalist-success);
+}
+
+.brutalist-message {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.brutalist-message--default {
+  color: var(--brutalist-black);
+  opacity: 0.65;
+}
+
+.brutalist-message--error {
+  color: var(--brutalist-danger);
+}
+
+.brutalist-message--success {
+  color: var(--brutalist-success);
+}
+
+/* ——— Button ——— */
+
+.brutalist-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 700;
+  border: 4px solid var(--brutalist-black);
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.brutalist-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* En reposo: blanco + borde negro; segunda sombra = color de cada variante */
+.brutalist-btn--primary,
+.brutalist-btn--secondary,
+.brutalist-btn--danger {
+  background-color: var(--brutalist-white);
+  color: var(--brutalist-black);
+  border-color: var(--brutalist-black);
+}
+
+.brutalist-btn--sm {
+  min-height: 2.5rem;
+  padding: 8px 14px;
+  font-size: 14px;
+}
+
+.brutalist-btn--md {
+  min-height: 2.75rem;
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.brutalist-btn--lg {
+  min-height: 3.25rem;
+  padding: 14px 22px;
+  font-size: 18px;
+}
+
+.brutalist-btn--primary.brutalist-btn--sm {
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-primary);
+}
+
+.brutalist-btn--primary.brutalist-btn--md {
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-primary);
+}
+
+.brutalist-btn--primary.brutalist-btn--lg {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-primary);
+}
+
+.brutalist-btn--secondary.brutalist-btn--sm {
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-secondary);
+}
+
+.brutalist-btn--secondary.brutalist-btn--md {
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-secondary);
+}
+
+.brutalist-btn--secondary.brutalist-btn--lg {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-secondary);
+}
+
+.brutalist-btn--danger.brutalist-btn--sm {
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-danger);
+}
+
+.brutalist-btn--danger.brutalist-btn--md {
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-danger);
+}
+
+.brutalist-btn--danger.brutalist-btn--lg {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-danger);
+}
+
+.brutalist-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+}
+
+.brutalist-btn--primary:hover:not(:disabled) {
+  background-color: var(--brutalist-primary);
+  color: var(--brutalist-white);
+  border-color: var(--brutalist-black);
+  box-shadow: 7px 7px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-primary-shadow);
+}
+
+.brutalist-btn--primary.brutalist-btn--sm:hover:not(:disabled) {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-primary-shadow);
+}
+
+.brutalist-btn--primary.brutalist-btn--lg:hover:not(:disabled) {
+  box-shadow: 8px 8px 0 var(--brutalist-black), 14px 14px 0 var(--brutalist-primary-shadow);
+}
+
+.brutalist-btn--secondary:hover:not(:disabled) {
+  background-color: var(--brutalist-secondary);
+  color: var(--brutalist-black);
+  border-color: var(--brutalist-black);
+  box-shadow: 7px 7px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-secondary-shadow);
+}
+
+.brutalist-btn--secondary.brutalist-btn--sm:hover:not(:disabled) {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 10px 10px 0 var(--brutalist-secondary-shadow);
+}
+
+.brutalist-btn--secondary.brutalist-btn--lg:hover:not(:disabled) {
+  box-shadow: 8px 8px 0 var(--brutalist-black), 14px 14px 0 var(--brutalist-secondary-shadow);
+}
+
+.brutalist-btn--danger:hover:not(:disabled) {
+  background-color: var(--brutalist-danger);
+  color: var(--brutalist-white);
+  border-color: var(--brutalist-black);
+  box-shadow: 7px 7px 0 var(--brutalist-black), 12px 12px 0 #450a0a;
+}
+
+.brutalist-btn--danger.brutalist-btn--sm:hover:not(:disabled) {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 10px 10px 0 #450a0a;
+}
+
+.brutalist-btn--danger.brutalist-btn--lg:hover:not(:disabled) {
+  box-shadow: 8px 8px 0 var(--brutalist-black), 14px 14px 0 #450a0a;
+}
+
+.brutalist-btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+}
+
+.brutalist-btn--primary:active:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--brutalist-black), 6px 6px 0 var(--brutalist-primary);
+}
+
+.brutalist-btn--primary:hover:active:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--brutalist-black), 6px 6px 0 var(--brutalist-primary-shadow);
+}
+
+.brutalist-btn--secondary:active:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--brutalist-black), 6px 6px 0 var(--brutalist-secondary);
+}
+
+.brutalist-btn--secondary:hover:active:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--brutalist-black), 6px 6px 0 var(--brutalist-secondary-shadow);
+}
+
+.brutalist-btn--danger:active:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--brutalist-black), 6px 6px 0 var(--brutalist-danger);
+}
+
+.brutalist-btn--danger:hover:active:not(:disabled) {
+  box-shadow: 3px 3px 0 var(--brutalist-black), 6px 6px 0 #450a0a;
+}
+
+.brutalist-btn--loading {
+  position: relative;
+}
+
+/* ——— Modal ——— */
+
+.brutalist-modal-root {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.brutalist-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.brutalist-modal-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .brutalist-modal-center {
+    padding: 1.5rem;
+  }
+}
+
+.brutalist-modal-panel {
+  pointer-events: auto;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  max-height: min(92dvh, 100%);
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--brutalist-white);
+  color: var(--brutalist-black);
+  border: 4px solid var(--brutalist-black);
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-primary);
+}
+
+.brutalist-modal-panel--sm {
+  max-width: min(20rem, 100%);
+}
+
+.brutalist-modal-panel--md {
+  max-width: min(32rem, 100%);
+}
+
+.brutalist-modal-panel--lg {
+  max-width: min(48rem, 100%);
+}
+
+.brutalist-modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 4px solid var(--brutalist-black);
+  padding: 1rem 1rem 0.875rem;
+}
+
+.brutalist-modal-header-main {
+  min-width: 0;
+  flex: 1;
+  padding-top: 0.125rem;
+}
+
+.brutalist-modal-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .brutalist-modal-title {
+    font-size: 1.25rem;
+  }
+}
+
+.brutalist-modal-close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 3px solid var(--brutalist-black);
+  background-color: var(--brutalist-white);
+  color: var(--brutalist-black);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.brutalist-modal-close:hover {
+  background-color: var(--brutalist-primary);
+  color: var(--brutalist-white);
+}
+
+.brutalist-modal-close:focus-visible {
+  outline: 2px solid var(--brutalist-accent);
+  outline-offset: 2px;
+}
+
+.brutalist-modal-close svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.brutalist-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .brutalist-modal-body {
+    font-size: 1rem;
+  }
+}
+
+.brutalist-modal-footer {
+  flex-shrink: 0;
+  border-top: 4px solid var(--brutalist-black);
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+/* ——— Card ——— */
+
+.brutalist-card {
+  /* Segunda capa (reposo) y tono “sombra” en hover → brutalist-card--tone-* */
+  --card-tone: var(--brutalist-primary);
+  --card-tone-shadow: var(--brutalist-primary-shadow);
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--brutalist-white);
+  color: var(--brutalist-black);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  transition:
+    transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.brutalist-card--tone-primary {
+  --card-tone: var(--brutalist-primary);
+  --card-tone-shadow: var(--brutalist-primary-shadow);
+}
+
+.brutalist-card--tone-secondary {
+  --card-tone: var(--brutalist-secondary);
+  --card-tone-shadow: var(--brutalist-secondary-shadow);
+}
+
+.brutalist-card--tone-danger {
+  --card-tone: var(--brutalist-danger);
+  --card-tone-shadow: var(--brutalist-danger-shadow);
+}
+
+.brutalist-card:hover {
+  transform: translate(-3px, -4px);
+}
+
+/* Borde sólido + sombra doble (como modal / botón) */
+.brutalist-card--solid {
+  border: 4px solid var(--brutalist-black);
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
+}
+
+.brutalist-card--solid:hover {
+  box-shadow: 7px 7px 0 var(--brutalist-black), 13px 13px 0 var(--card-tone-shadow);
+}
+
+/* Borde grueso: solo negro en reposo; color (tono + “sombra”) solo en hover */
+.brutalist-card--thick {
+  border: 6px solid var(--brutalist-black);
+  box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-black);
+}
+
+.brutalist-card--thick:hover {
+  box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--card-tone-shadow);
+}
+
+/* Doble línea CSS */
+.brutalist-card--double {
+  border: 4px double var(--brutalist-black);
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
+}
+
+.brutalist-card--double:hover {
+  box-shadow: 7px 7px 0 var(--brutalist-black), 13px 13px 0 var(--card-tone-shadow);
+}
+
+/* Misma estructura que solid; variante de nombre / uso */
+.brutalist-card--accent {
+  border: 4px solid var(--brutalist-black);
+  box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
+}
+
+.brutalist-card--accent:hover {
+  box-shadow: 7px 7px 0 var(--brutalist-black), 13px 13px 0 var(--card-tone-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brutalist-card {
+    transition: none;
+  }
+
+  .brutalist-card:hover {
+    transform: none;
+  }
+
+  .brutalist-card--solid:hover {
+    box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
+  }
+
+  .brutalist-card--thick:hover {
+    box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-black);
+  }
+
+  .brutalist-card--double:hover {
+    box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
+  }
+
+  .brutalist-card--accent:hover {
+    box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
+  }
+
+  .brutalist-card:hover .brutalist-card-media img {
+    transform: none;
+  }
+}
+
+.brutalist-card-media {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-bottom: 4px solid var(--brutalist-black);
+  background-color: #f5f5f5;
+  aspect-ratio: 16 / 9;
+  max-height: min(40dvh, 14rem);
+}
+
+@media (min-width: 640px) {
+  .brutalist-card-media {
+    max-height: min(45dvh, 16rem);
+  }
+}
+
+.brutalist-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.brutalist-card:hover .brutalist-card-media img {
+  transform: scale(1.06);
+}
+
+.brutalist-card-title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.brutalist-card-header {
+  flex-shrink: 0;
+  padding: 0.875rem 1rem;
+  border-bottom: 4px solid var(--brutalist-black);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+  .brutalist-card-header {
+    font-size: 1.0625rem;
+    padding: 1rem 1.125rem;
+  }
+}
+
+.brutalist-card-body {
+  flex: 1;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 640px) {
+  .brutalist-card-body {
+    font-size: 0.9375rem;
+  }
+}
+
+.brutalist-card-footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 0.875rem 1rem;
+  border-top: 4px solid var(--brutalist-black);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}

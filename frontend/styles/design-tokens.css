@@ -1,0 +1,80 @@
+:root {
+  --brutalist-black: #000000;
+  --brutalist-white: #ffffff;
+  --brutalist-primary: #4a90e2;
+  --brutalist-primary-shadow: #2563eb;
+  --brutalist-secondary: #facc15;
+  --brutalist-secondary-shadow: #ca8a04;
+  --brutalist-accent: #4a90e2;
+  --brutalist-placeholder: #888888;
+  --brutalist-danger: #991b1b;
+  --brutalist-danger-shadow: #7a0a16;
+  --brutalist-danger-hover-shadow: #450a0a;
+  --brutalist-danger-focus-ring: #7f1d1d;
+  --brutalist-success: #15803d;
+  --brutalist-success-focus-ring: #166534;
+  --brutalist-neutral-media-bg: #f5f5f5;
+  --brutalist-overlay-scrim: rgba(0, 0, 0, 0.45);
+
+  --ds-border-width-sm: 3px;
+  --ds-border-width-md: 4px;
+  --ds-border-width-lg: 6px;
+  --ds-outline-width: 2px;
+
+  --ds-font-size-rem-card-body: 0.875rem;
+  --ds-font-size-rem-card-body-up: 0.9375rem;
+  --ds-font-size-rem-card-header-up: 1.0625rem;
+  --ds-font-size-rem-modal-title: 1.125rem;
+  --ds-font-size-rem-modal-title-up: 1.25rem;
+  --ds-font-size-rem-modal-body: 0.9375rem;
+  --ds-font-size-rem-modal-body-up: 1rem;
+
+  --ds-scale-card-media-hover: 1.06;
+
+  --ds-px-1: 1px;
+  --ds-px-2: 2px;
+  --ds-px-3: 3px;
+  --ds-px-4: 4px;
+  --ds-px-5: 5px;
+  --ds-px-6: 6px;
+  --ds-px-7: 7px;
+  --ds-px-8: 8px;
+  --ds-px-10: 10px;
+  --ds-px-12: 12px;
+  --ds-px-13: 13px;
+  --ds-px-14: 14px;
+  --ds-px-15: 15px;
+  --ds-px-16: 16px;
+  --ds-px-18: 18px;
+  --ds-px-20: 20px;
+  --ds-px-22: 22px;
+
+  --ds-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --ds-font-size-xs: 12px;
+  --ds-font-size-sm: 14px;
+  --ds-font-size-base: 16px;
+  --ds-font-size-md: 18px;
+  --ds-font-size-lg: 20px;
+  --ds-font-weight-bold: 700;
+  --ds-line-height-body: 1.5;
+  --ds-line-height-relaxed: 1.55;
+
+  --ds-radius-none: 0;
+
+  --ds-z-modal: 200;
+
+  --ds-duration-fast: 0.2s;
+  --ds-duration-md: 0.3s;
+  --ds-duration-slow: 0.35s;
+  --ds-duration-image: 0.45s;
+  --ds-easing-standard: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ds-spinner-duration: 0.75s;
+
+  --ds-opacity-disabled: 0.55;
+  --ds-opacity-muted: 0.65;
+
+  --ds-spinner-sm: 14px;
+  --ds-spinner-md: 18px;
+  --ds-spinner-lg: 22px;
+  --ds-spinner-border-sm: 2px;
+}

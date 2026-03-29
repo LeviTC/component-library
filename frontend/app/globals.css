@@ -1,0 +1,26 @@
+@import "../styles/design-tokens.css";
+@import "tailwindcss";
+@import "../styles/brutalist.css";
+
+/* Colores de página (usan variables de design-tokens.css / lib/design-tokens.ts) */
+:root {
+  --background: var(--brutalist-white);
+  --foreground: var(--brutalist-black);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--brutalist-primary);
+  --color-secondary: var(--brutalist-secondary);
+  --color-danger: var(--brutalist-danger);
+  --color-success: var(--brutalist-success);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--ds-font-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--ds-font-mono), ui-monospace, monospace;
+}
