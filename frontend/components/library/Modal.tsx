@@ -4,7 +4,6 @@ import {
   useEffect,
   useId,
   useRef,
-  useState,
   type PointerEvent,
   type ReactNode,
 } from "react";
@@ -49,7 +48,6 @@ export default function Modal({
   ariaLabel = "Ventana de diálogo",
 }: ModalProps) {
   const analytics = useComponentAnalytics();
-  const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
   const headerMain = header ?? title;
