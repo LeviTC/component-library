@@ -3,7 +3,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 
-export type CardBorderVariant = "solid" | "thick" | "double" ;
+export type CardBorderVariant = "solid" | "thick" | "double" | "accent";
 
 export type CardTone = "primary" | "secondary" | "danger";
 

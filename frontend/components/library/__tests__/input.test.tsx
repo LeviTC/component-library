@@ -8,6 +8,15 @@ describe("Input", () => {
     const input = screen.getByRole("textbox", { name: "Correo" });
     expect(input).toBeInTheDocument();
     expect(input).toHaveClass("brutalist-input");
+    expect(input).toHaveAttribute("id");
+  });
+
+  it("usa el id explícito en el input", () => {
+    render(<Input id="login-email" label="Email" name="e" />);
+    expect(screen.getByRole("textbox", { name: "Email" })).toHaveAttribute(
+      "id",
+      "login-email",
+    );
   });
 
   it("respeta props: type email, validationState, message y size", () => {

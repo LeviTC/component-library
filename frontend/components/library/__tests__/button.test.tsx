@@ -44,6 +44,30 @@ describe("Button", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
+  it("expone id en el DOM (prop o generado)", () => {
+    const { rerender } = render(<Button>Gen</Button>);
+    expect(screen.getByRole("button", { name: "Gen" })).toHaveAttribute(
+      "id",
+    );
+    rerender(<Button id="mi-boton">Con id</Button>);
+    expect(screen.getByRole("button", { name: "Con id" })).toHaveAttribute(
+      "id",
+      "mi-boton",
+    );
+  });
+
+  it("admite type submit para formularios", () => {
+    render(
+      <form>
+        <Button type="submit">Enviar</Button>
+      </form>,
+    );
+    expect(screen.getByRole("button", { name: "Enviar" })).toHaveAttribute(
+      "type",
+      "submit",
+    );
+  });
+
   it("en loading muestra estado ocupado y no ejecuta onClick", async () => {
     const user = userEvent.setup();
     const onClick = jest.fn();

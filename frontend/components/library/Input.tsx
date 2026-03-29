@@ -7,6 +7,7 @@ import {
   type InputHTMLAttributes,
 } from "react";
 import { EyeHideIcon, EyeShowIcon } from "@/components/library/icons/PasswordVisibilityIcons";
+import { useComponentAnalytics } from "@/lib/component-analytics-context";
 
 export type InputType = "text" | "email" | "password";
 export type InputValidationState = "default" | "error" | "success";
@@ -62,10 +63,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     id: idProp,
     autoComplete,
     inputMode,
+    onBlur,
+    onFocus,
     ...rest
   },
   ref,
 ) {
+  const analytics = useComponentAnalytics();
   const uid = useId();
   const id = idProp ?? `input-${uid}`;
   const messageId = message ? `${id}-message` : undefined;
@@ -99,6 +103,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     .filter(Boolean)
     .join(" ");
 
+  const analyticsMeta = {
+    ...(idProp != null && idProp !== ""
+      ? { elementId: idProp }
+      : { elementLabel: label }),
+    ...(idProp != null && idProp !== "" ? { elementLabel: label } : {}),
+  };
+
   return (
     <div
       className={`brutalist-field ${fieldStateClass[validationState]}`.trim()}
@@ -119,6 +130,28 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           }
           autoCapitalize={isEmail ? "none" : undefined}
           className={inputClassName}
+          onFocus={(e) => {
+            onFocus?.(e);
+            if (!disabled) {
+              analytics?.track({
+                componentName: "Input",
+                variant: type,
+                action: "focus",
+                metadata: { ...analyticsMeta },
+              });
+            }
+          }}
+          onBlur={(e) => {
+            onBlur?.(e);
+            if (!disabled) {
+              analytics?.track({
+                componentName: "Input",
+                variant: type,
+                action: "blur",
+                metadata: { ...analyticsMeta, validationState },
+              });
+            }
+          }}
           {...rest}
         />
         {showToggle ? (

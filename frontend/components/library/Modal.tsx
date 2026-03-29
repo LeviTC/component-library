@@ -10,6 +10,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { CloseIcon } from "@/components/library/icons/CloseIcon";
+import { useComponentAnalytics } from "@/lib/component-analytics-context";
 
 export type ModalSize = "sm" | "md" | "lg";
 
@@ -47,6 +48,7 @@ export default function Modal({
   closeButtonLabel = "Cerrar modal",
   ariaLabel = "Ventana de diálogo",
 }: ModalProps) {
+  const analytics = useComponentAnalytics();
   const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
@@ -56,7 +58,6 @@ export default function Modal({
     headerMain !== false &&
     headerMain !== "";
 
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
@@ -76,6 +77,26 @@ export default function Modal({
     };
   }, [open]);
 
+  /** Transiciones open/close cubren X, overlay, Escape y cierre desde el padre (p. ej. footer). */
+  const prevOpenRef = useRef(false);
+  useEffect(() => {
+    if (open && !prevOpenRef.current) {
+      analytics?.track({
+        componentName: "Modal",
+        variant: size,
+        action: "open",
+      });
+    }
+    if (!open && prevOpenRef.current) {
+      analytics?.track({
+        componentName: "Modal",
+        variant: size,
+        action: "close",
+      });
+    }
+    prevOpenRef.current = open;
+  }, [open, size, analytics]);
+
   useEffect(() => {
     if (!open || !panelRef.current) return;
     const root = panelRef.current;
@@ -85,7 +106,7 @@ export default function Modal({
     (focusable ?? root).focus();
   }, [open]);
 
-  if (!mounted || !open) return null;
+  if (!open) return null;
 
   const panelClass = [
     "brutalist-modal-panel",
