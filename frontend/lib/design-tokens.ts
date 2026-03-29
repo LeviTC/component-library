@@ -116,7 +116,6 @@ export const cssVars = {
   primary: "var(--brutalist-primary)",
   danger: "var(--brutalist-danger)",
   success: "var(--brutalist-success)",
-  accent: "var(--brutalist-accent)",
 } as const;
 
 function pxVars(): string {
@@ -150,7 +149,6 @@ export function buildDesignTokensRootCss(): string {
   --brutalist-primary-shadow: ${c.primaryShadow};
   --brutalist-secondary: ${c.secondary};
   --brutalist-secondary-shadow: ${c.secondaryShadow};
-  --brutalist-accent: ${c.primary};
   --brutalist-placeholder: ${c.placeholder};
   --brutalist-danger: ${c.danger};
   --brutalist-danger-shadow: ${c.dangerShadow};

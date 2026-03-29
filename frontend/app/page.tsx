@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   Button,
@@ -13,15 +14,41 @@ import {
   fetchComponentsStats,
   type ComponentsStats,
 } from "@/lib/components-stats-api";
+import { getAuthToken } from "@/lib/auth-storage";
+import { downloadTrackingExport } from "@/lib/export-tracking";
 
 const STATS_POLL_MS = 4000;
 
 export default function Home() {
+  const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSize, setModalSize] = useState<ModalSize>("md");
   const closeDemoModal = () => setModalOpen(false);
+  const [exportAuthModalOpen, setExportAuthModalOpen] = useState(false);
   const [stats, setStats] = useState<ComponentsStats | null>(null);
   const [statsError, setStatsError] = useState<string | null>(null);
+  const [exportMsg, setExportMsg] = useState<string | null>(null);
+  const [buttonLoading, setButtonLoading] = useState<"csv" | "json" | null>(null);
+
+  const requestExport = (format: "csv" | "json") => {
+    if (!getAuthToken()) {
+      setExportAuthModalOpen(true);
+      return;
+    }
+    void handleExport(format);
+  };
+
+  const handleExport = async (format: "csv" | "json") => {
+    setExportMsg(null);
+    setButtonLoading(format);
+    try {
+      await downloadTrackingExport(format);
+    } catch (e) {
+      setExportMsg(e instanceof Error ? e.message : "Error al exportar");
+    } finally {
+      setButtonLoading(null);
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -64,20 +91,20 @@ export default function Home() {
         className="mx-auto w-full max-w-6xl rounded border-4 border-neutral-900 bg-amber-50 p-4 shadow-[6px_6px_0_0_#171717] sm:p-6"
         aria-labelledby="stats-heading"
       >
-        <div className="flex justify-between items-center">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <h2
             id="stats-heading"
-            className="m-0 mb-4 font-mono text-lg font-bold text-neutral-900"
+            className="m-0 font-mono text-lg font-bold text-neutral-900"
           >
             Estadísticas en tiempo real
           </h2>
-
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-2">
             <Button
               id="stats-export-csv"
               variant="primary"
               size="sm"
-              // onClick={() => void handleExport("csv")}
+              onClick={() => requestExport("csv")}
+              loading={buttonLoading === "csv"}
             >
               Exportar CSV
             </Button>
@@ -85,12 +112,18 @@ export default function Home() {
               id="stats-export-json"
               variant="secondary"
               size="sm"
-              // onClick={() => void handleExport("json")}
+              onClick={() => requestExport("json")}
+              loading={buttonLoading === "json"}
             >
               Exportar JSON
             </Button>
           </div>
         </div>
+        {exportMsg ? (
+          <p className="m-0 mb-3 font-mono text-sm text-red-800" role="alert">
+            {exportMsg}
+          </p>
+        ) : null}
         {statsError ? (
           <p className="m-0 font-mono text-sm text-red-800" role="alert">
             {statsError} — comprueba que el backend esté en marcha y{" "}
@@ -185,7 +218,8 @@ export default function Home() {
           <p className="m-0 font-mono text-sm text-neutral-600">Cargando…</p>
         ) : null}
         <p className="m-0 mt-4 font-mono text-xs text-neutral-600">
-          Exporta CSV o JSON desde la barra superior tras iniciar sesión.
+          Descarga el historial de tracking en CSV o JSON con los botones de esta
+          sección (requiere haber iniciado sesión).
         </p>
       </section>
 
@@ -326,20 +360,6 @@ export default function Home() {
             <p className="m-0 text-sm">Doble borde y tono danger.</p>
           </Card>
           <Card
-            borderVariant="accent"
-            tone="primary"
-            header="Accent · primary"
-            footer={
-              <Button id="demo-card-view-accent" size="sm" variant="danger">
-                Ver
-              </Button>
-            }
-          >
-            <p className="m-0 text-sm">
-              Variante <code className="font-bold">accent</code>.
-            </p>
-          </Card>
-          <Card
             className="sm:col-span-2 lg:col-span-1 xl:col-span-1"
             tone="secondary"
             imageSrc="https://picsum.photos/seed/brutalist-card/600/340"
@@ -404,6 +424,50 @@ export default function Home() {
           </Button>
         </div>
       </section>
+
+      <Modal
+        open={exportAuthModalOpen}
+        onClose={() => setExportAuthModalOpen(false)}
+        title="Exportar tracking"
+        size="md"
+        footer={
+          <>
+            <Button
+              id="export-auth-close"
+              variant="secondary"
+              onClick={() => setExportAuthModalOpen(false)}
+            >
+              Cerrar
+            </Button>
+            <Button
+              id="export-auth-register"
+              variant="secondary"
+              onClick={() => {
+                setExportAuthModalOpen(false);
+                router.push("/register");
+              }}
+            >
+              Registrarme
+            </Button>
+            <Button
+              id="export-auth-login"
+              variant="primary"
+              onClick={() => {
+                setExportAuthModalOpen(false);
+                router.push("/login");
+              }}
+            >
+              Iniciar sesión
+            </Button>
+          </>
+        }
+      >
+        <p className="m-0 font-mono text-sm leading-relaxed text-neutral-800">
+          Para descargar el historial en <strong>CSV</strong> o <strong>JSON</strong>{" "}
+          necesitas una cuenta. Inicia sesión o regístrate; después podrás usar de
+          nuevo los botones de exportar en esta sección.
+        </p>
+      </Modal>
 
       <Modal
         open={modalOpen}

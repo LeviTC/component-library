@@ -33,15 +33,15 @@ Login. Body:
 
 JWT es **stateless**: no invalida el token en servidor. El cliente debe borrar el token (p. ej. `localStorage`). Respuesta **200**: `{ "success": true, "message": "..." }`.
 
-### Rutas protegidas (ej. export CSV)
+### Rutas protegidas
 
-Enviar cabecera:
+Para endpoints que añadas con JWT, envía:
 
 ```http
 Authorization: Bearer <token>
 ```
 
-Usa el middleware `authenticateToken` en `src/middleware/authMiddleware.js`.
+Middleware: `authenticateToken` en `src/middleware/authMiddleware.js` (p. ej. `GET /api/components/export`).
 
 ---
 
@@ -102,7 +102,7 @@ Query:
 - `limit`: opcional (máx. 20000, defecto 5000)
 
 **200** — archivo adjunto (`component-tracking.csv` o `.json`)  
-**401** — sin token o token inválido  
+**401** — sin token o token inválido
 
 Ejemplo:
 

@@ -6,16 +6,113 @@ import { useState } from "react";
 import { Button, Input } from "@/components/library";
 import { registerApi } from "@/lib/auth-api";
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function isValidEmail(value: string): boolean {
+  return EMAIL_RE.test(value.trim());
+}
+
+const MIN_PASSWORD = 6;
+const MAX_PASSWORD = 20;
+
+function getPasswordError(password: string): string | null {
+  if (password.length < MIN_PASSWORD) {
+    return `La contraseña debe tener al menos ${MIN_PASSWORD} caracteres`;
+  }
+  if (password.length > MAX_PASSWORD) {
+    return "La contraseña es demasiado larga";
+  }
+  return null;
+}
+
+const PASSWORD_MATCH_OK = "Las contraseñas coinciden";
+const EMAIL_OK = "Correo válido";
+
 export default function RegisterPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [emailBlurred, setEmailBlurred] = useState(false);
+  const [passwordBlurred, setPasswordBlurred] = useState(false);
+  const [confirmBlurred, setConfirmBlurred] = useState(false);
+
+  const emailInvalid = emailBlurred && !isValidEmail(email);
+  const emailSuccess = emailBlurred && isValidEmail(email);
+  const emailInputState: "default" | "error" | "success" = emailInvalid
+    ? "error"
+    : emailSuccess
+      ? "success"
+      : "default";
+  const emailInputMessage = emailInvalid
+    ? "Correo electrónico no válido"
+    : emailSuccess
+      ? EMAIL_OK
+      : undefined;
+
+  const passwordFormatError = passwordBlurred ? getPasswordError(password) : null;
+  const confirmFormatError = confirmBlurred ? getPasswordError(confirmPassword) : null;
+  const mismatch =
+    passwordBlurred &&
+    confirmBlurred &&
+    passwordFormatError == null &&
+    confirmFormatError == null &&
+    password !== confirmPassword;
+
+  const passwordsMatchSuccess =
+    passwordBlurred &&
+    confirmBlurred &&
+    passwordFormatError == null &&
+    confirmFormatError == null &&
+    password === confirmPassword &&
+    password.length >= MIN_PASSWORD;
+
+  const passwordInputState: "default" | "error" | "success" = !passwordBlurred
+    ? "default"
+    : passwordFormatError != null
+      ? "error"
+      : mismatch
+        ? "error"
+        : passwordsMatchSuccess
+          ? "success"
+          : "default";
+
+  const confirmInputState: "default" | "error" | "success" = !confirmBlurred
+    ? "default"
+    : confirmFormatError != null
+      ? "error"
+      : mismatch
+        ? "error"
+        : passwordsMatchSuccess
+          ? "success"
+          : "default";
+
+  const passwordInputMessage =
+    passwordFormatError ??
+    (mismatch ? "Las contraseñas no coinciden" : undefined) ??
+    (passwordsMatchSuccess ? PASSWORD_MATCH_OK : undefined);
+
+  const confirmInputMessage =
+    confirmFormatError ??
+    (mismatch ? "Las contraseñas no coinciden" : undefined) ??
+    (passwordsMatchSuccess ? PASSWORD_MATCH_OK : undefined);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setEmailBlurred(true);
+    setPasswordBlurred(true);
+    setConfirmBlurred(true);
+    if (
+      !isValidEmail(email) ||
+      getPasswordError(password) != null ||
+      getPasswordError(confirmPassword) != null ||
+      password !== confirmPassword
+    ) {
+      return;
+    }
     setLoading(true);
     try {
       await registerApi(email, password);
@@ -34,7 +131,8 @@ export default function RegisterPage() {
         Crear cuenta
       </h1>
       <p className="m-0 font-mono text-sm text-neutral-600">
-        El registro devuelve un JWT guardado en el navegador para exportar datos.
+        El registro devuelve un JWT en el navegador (p. ej. para exportar el
+        tracking en CSV/JSON desde la demo).
       </p>
       <form className="flex flex-col gap-4" onSubmit={(e) => void handleSubmit(e)}>
         <Input
@@ -45,8 +143,10 @@ export default function RegisterPage() {
           autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onBlur={() => setEmailBlurred(true)}
           placeholder="tu@correo.com"
-          validationState="default"
+          validationState={emailInputState}
+          message={emailInputMessage}
           required
         />
         <Input
@@ -57,8 +157,24 @@ export default function RegisterPage() {
           autoComplete="new-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Mínimo según validación del API"
-          validationState="default"
+          onBlur={() => setPasswordBlurred(true)}
+          placeholder=""
+          validationState={passwordInputState}
+          message={passwordInputMessage}
+          required
+        />
+        <Input
+          id="register-password-confirm"
+          label="Confirmar contraseña"
+          type="password"
+          name="password-confirm"
+          autoComplete="new-password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          onBlur={() => setConfirmBlurred(true)}
+          placeholder=""
+          validationState={confirmInputState}
+          message={confirmInputMessage}
           required
         />
         {error ? (

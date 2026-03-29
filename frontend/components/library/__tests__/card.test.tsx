@@ -9,16 +9,6 @@ describe("Card", () => {
     expect(screen.getByText("Contenido")).toBeInTheDocument();
   });
 
-  it("aplica borderVariant accent", () => {
-    const { container } = render(
-      <Card borderVariant="accent" tone="primary">
-        A
-      </Card>,
-    );
-    const el = container.querySelector("article.brutalist-card");
-    expect(el?.className).toMatch(/brutalist-card--accent/);
-  });
-
   it("aplica props: borderVariant, tone, as y className", () => {
     const { container } = render(
       <Card

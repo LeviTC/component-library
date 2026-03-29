@@ -55,11 +55,11 @@ router.get(
       byAction,
       lastEvent: last
         ? {
-            at: last.createdAt,
-            componentName: last.componentName,
-            action: last.action,
-            variant: last.variant,
-          }
+          at: last.createdAt,
+          componentName: last.componentName,
+          action: last.action,
+          variant: last.variant,
+        }
         : null,
       updatedAt: new Date().toISOString(),
     });
@@ -90,7 +90,9 @@ router.get(
       .limit(limit)
       .lean();
 
-    console.log(`[export] ${format} ${rows.length} filas (user ${req.user?.sub})`);
+    console.log(
+      `[export] ${format} ${rows.length} filas (user ${req.user?.sub})`,
+    );
 
     if (format === 'json') {
       res.setHeader('Content-Type', 'application/json; charset=utf-8');

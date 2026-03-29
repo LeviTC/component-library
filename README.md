@@ -1,6 +1,6 @@
 # Component Library — examen técnico
 
-Monorepo con **Next.js (TypeScript)** en `frontend/` y **Express + MongoDB + JWT** en `backend/`. Incluye una librería de componentes (Button, Input, Modal, Card) con **tracking automático** hacia el API, página demo con **estadísticas en tiempo real**, **exportación CSV/JSON** (JWT) y **login/registro**.
+Monorepo con **Next.js (TypeScript)** en `frontend/` y **Express + MongoDB + JWT** en `backend/`. Incluye una librería de componentes (Button, Input, Modal, Card) con **tracking automático** hacia el API, página demo con **estadísticas en tiempo real**, **exportación CSV/JSON** (con JWT, tras iniciar sesión) y **login/registro**.
 
 ## Requisitos
 
@@ -41,7 +41,7 @@ Ajusta `NEXT_PUBLIC_API_URL` si el backend no está en `http://localhost:4000`.
 npm run dev
 ```
 
-Abre `http://localhost:3000`: verás el showcase, el panel de estadísticas (polling al API) y enlaces a **Iniciar sesión** / **Registro**. Tras autenticarte, usa **Exportar CSV** / **Exportar JSON** en la barra superior.
+Abre `http://localhost:3000`: verás el showcase, el panel de estadísticas (polling al API) y enlaces a **Iniciar sesión** / **Registro**. Tras **iniciar sesión**, usa **Exportar CSV** / **Exportar JSON** en el panel de estadísticas (JWT requerido).
 
 ### Tests (frontend)
 
