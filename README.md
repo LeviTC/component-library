@@ -66,6 +66,3 @@ npm run test:coverage
 | `backend/src/routes/components.js` | Track, stats, export |
 | `backend/README.md` | Documentación detallada de la API |
 
-## Entrega
-
-Sube el repositorio a GitHub y concede acceso a los correos indicados en el enunciado del examen.
