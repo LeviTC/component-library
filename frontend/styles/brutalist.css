@@ -1,14 +1,9 @@
-/* Inspirado en Uiverse.io / 0xnihilism — variables en styles/design-tokens.css (generado desde lib/design-tokens.ts). */
-
-/* ——— Input: misma doble sombra que los botones; sin animaciones al foco ——— */
-
 .brutalist-field {
   position: relative;
   width: 100%;
   min-width: 10rem;
   max-width: 100%;
   padding-top: 2.25rem;
-  /* espacio para que no recorten el segundo bloque (derecha / abajo) */
   padding-right: 14px;
   padding-bottom: 14px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -149,7 +144,6 @@
   box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--brutalist-success);
 }
 
-/* Foco: solo cambio de borde, sin pulse ni gradientes */
 .brutalist-input-shell:focus-within
   .brutalist-input:not(.brutalist-input--error):not(.brutalist-input--success):not(:disabled) {
   border-color: var(--brutalist-accent);
@@ -226,8 +220,6 @@
   color: var(--brutalist-success);
 }
 
-/* ——— Button ——— */
-
 .brutalist-btn {
   position: relative;
   display: inline-flex;
@@ -249,7 +241,6 @@
   opacity: 0.55;
 }
 
-/* En reposo: blanco + borde negro; segunda sombra = color de cada variante */
 .brutalist-btn--primary,
 .brutalist-btn--secondary,
 .brutalist-btn--danger {
@@ -393,8 +384,6 @@
   position: relative;
 }
 
-/* ——— Modal ——— */
-
 .brutalist-modal-root {
   position: fixed;
   inset: 0;
@@ -532,10 +521,7 @@
   justify-content: flex-end;
 }
 
-/* ——— Card ——— */
-
 .brutalist-card {
-  /* Segunda capa (reposo) y tono “sombra” en hover → brutalist-card--tone-* */
   --card-tone: var(--brutalist-primary);
   --card-tone-shadow: var(--brutalist-primary-shadow);
   display: flex;
@@ -570,7 +556,6 @@
   transform: translate(-3px, -4px);
 }
 
-/* Borde sólido + sombra doble (como modal / botón) */
 .brutalist-card--solid {
   border: 4px solid var(--brutalist-black);
   box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
@@ -580,7 +565,6 @@
   box-shadow: 7px 7px 0 var(--brutalist-black), 13px 13px 0 var(--card-tone-shadow);
 }
 
-/* Borde grueso: solo negro en reposo; color (tono + “sombra”) solo en hover */
 .brutalist-card--thick {
   border: 6px solid var(--brutalist-black);
   box-shadow: 4px 4px 0 var(--brutalist-black), 8px 8px 0 var(--brutalist-black);
@@ -590,7 +574,6 @@
   box-shadow: 6px 6px 0 var(--brutalist-black), 12px 12px 0 var(--card-tone-shadow);
 }
 
-/* Doble línea CSS */
 .brutalist-card--double {
   border: 4px double var(--brutalist-black);
   box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);
@@ -600,7 +583,6 @@
   box-shadow: 7px 7px 0 var(--brutalist-black), 13px 13px 0 var(--card-tone-shadow);
 }
 
-/* Misma estructura que solid; variante de nombre / uso */
 .brutalist-card--accent {
   border: 4px solid var(--brutalist-black);
   box-shadow: 5px 5px 0 var(--brutalist-black), 10px 10px 0 var(--card-tone);

@@ -18,9 +18,6 @@ function signToken(user) {
   );
 }
 
-/**
- * POST /api/auth/register
- */
 router.post(
   '/register',
   validateRegister,
@@ -47,9 +44,6 @@ router.post(
   }),
 );
 
-/**
- * POST /api/auth/login
- */
 router.post(
   '/login',
   validateLogin,
@@ -75,11 +69,7 @@ router.post(
   }),
 );
 
-/**
- * POST /api/auth/logout
- * JWT es stateless: el cliente debe borrar el token.
- * Este endpoint confirma cierre de sesión en la API (útil para UX / logs).
- */
+
 router.post('/logout', (_req, res) => {
   console.log('[auth] logout (cliente debe eliminar el token)');
   return res.json({ success: true, message: 'Sesión cerrada en el cliente' });

@@ -17,19 +17,14 @@ export interface ModalProps {
   open: boolean;
   onClose: () => void;
   children: ReactNode;
-  /** Texto o nodo en la parte izquierda del header (junto al cierre). */
   title?: ReactNode;
-  /** Sustituye el área del título; el botón X sigue a la derecha salvo `hideCloseButton`. */
   header?: ReactNode;
   footer?: ReactNode;
   size?: ModalSize;
   className?: string;
-  /** @default true */
   closeOnOverlayClick?: boolean;
   hideCloseButton?: boolean;
-  /** @default "Cerrar modal" */
   closeButtonLabel?: string;
-  /** Si no hay `title` ni `header`, se usa como nombre del diálogo (accesibilidad). */
   ariaLabel?: string;
 }
 
@@ -75,7 +70,6 @@ export default function Modal({
     };
   }, [open]);
 
-  /** Transiciones open/close cubren X, overlay, Escape y cierre desde el padre (p. ej. footer). */
   const prevOpenRef = useRef(false);
   useEffect(() => {
     if (open && !prevOpenRef.current) {

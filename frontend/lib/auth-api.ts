@@ -47,7 +47,7 @@ export async function logoutApi(): Promise<void> {
   try {
     await fetch(`${getApiBaseUrl()}/api/auth/logout`, { method: "POST" });
   } catch {
-    /* opcional */
+    void 0;
   }
   clearAuthToken();
 }

@@ -1,10 +1,6 @@
 import type { ComponentTrackPayload } from "./component-analytics-context";
 import type { ComponentsStats } from "./components-stats-api";
 
-/**
- * Mezcla estadísticas del servidor con eventos de tracking aún no reflejados
- * en el siguiente poll (actualización optimista).
- */
 export function mergeComponentsStatsOptimistic(
   base: ComponentsStats | null,
   pending: readonly ComponentTrackPayload[],

@@ -4,9 +4,6 @@ function badRequest(res, message) {
   return res.status(400).json({ message });
 }
 
-/**
- * Valida body de registro: email y password.
- */
 function validateRegister(req, res, next) {
   const { email, password } = req.body ?? {};
   if (typeof email !== 'string' || !email.trim()) {
@@ -25,9 +22,6 @@ function validateRegister(req, res, next) {
   next();
 }
 
-/**
- * Valida body de login.
- */
 function validateLogin(req, res, next) {
   const { email, password } = req.body ?? {};
   if (typeof email !== 'string' || !email.trim()) {

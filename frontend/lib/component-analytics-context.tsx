@@ -21,7 +21,6 @@ type TrackListener = (payload: ComponentTrackPayload) => void;
 
 type Ctx = {
   track: (payload: ComponentTrackPayload) => void;
-  /** Suscripción síncrona antes del POST (p. ej. UI optimista). */
   subscribe: (listener: TrackListener) => () => void;
 };
 
@@ -40,7 +39,7 @@ export function ComponentAnalyticsProvider({ children }: { children: ReactNode }
       try {
         listener(payload);
       } catch {
-        /* no romper el tracking si un suscriptor falla */
+        void 0;
       }
     });
     const base = getApiBaseUrl();

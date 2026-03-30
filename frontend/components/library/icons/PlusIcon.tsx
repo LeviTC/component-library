@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-/** Icono de prueba: hereda color del botón (`currentColor`). */
 export function PlusIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

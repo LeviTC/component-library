@@ -37,13 +37,11 @@ app.get('/api/health', (_req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/components', componentsRoutes);
 
-// 404 API
 app.use((req, res) => {
   res.status(404).json({ message: `Ruta no encontrada: ${req.method} ${req.path}` });
 });
 
-// Errores (Mongoose, bcrypt, etc.)
-// eslint-disable-next-line no-unused-vars
+
 app.use((err, _req, res, _next) => {
   console.error('[error]', err);
   const status = err.statusCode || err.status || 500;

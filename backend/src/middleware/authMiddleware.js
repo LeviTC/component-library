@@ -1,9 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-/**
- * Requiere header Authorization: Bearer <token>
- * Asigna req.user = { sub, email, iat, exp }
- */
 function authenticateToken(req, res, next) {
   const secret = process.env.JWT_SECRET;
   if (!secret) {

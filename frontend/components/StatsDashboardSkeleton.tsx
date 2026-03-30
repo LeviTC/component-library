@@ -1,9 +1,3 @@
-/**
- * Placeholder de carga para el panel de estadísticas (misma rejilla que el contenido
- * final → menos CLS). Sin "use client": solo presentacional; se empaqueta con el
- * componente cliente que lo importa.
- */
-
 function Shimmer({ className }: { className?: string }) {
   return (
     <div

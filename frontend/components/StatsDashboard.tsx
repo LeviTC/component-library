@@ -29,7 +29,6 @@ export function StatsDashboard({ onNeedsAuthForExport }: StatsDashboardProps) {
   >([]);
   const statsRef = useRef<ComponentsStats | null>(null);
   const pendingRef = useRef<ComponentTrackPayload[]>([]);
-  /** Solo la petición más reciente puede escribir en el estado (evita respuestas fuera de orden). */
   const fetchSeqRef = useRef(0);
   statsRef.current = stats;
   pendingRef.current = pendingOptimistic;

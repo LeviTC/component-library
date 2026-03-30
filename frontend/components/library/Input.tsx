@@ -22,12 +22,7 @@ export interface InputProps
   disabled?: boolean;
   size?: InputSize;
   className?: string;
-  /** Texto bajo el campo (p. ej. error o confirmación). */
   message?: string;
-  /**
-   * Con `type="password"`, muestra botón para ver/ocultar.
-   * @default true
-   */
   showPasswordToggle?: boolean;
 }
 

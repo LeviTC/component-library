@@ -34,9 +34,7 @@ export function DemoButtonShowcase() {
                     id={`demo-btn-primary-${size}`}
                     variant="primary"
                     size={size}
-                    onClick={() => {
-                      /* demo */
-                    }}
+                    onClick={() => undefined}
                   >
                     Primary
                   </Button>
@@ -44,9 +42,7 @@ export function DemoButtonShowcase() {
                     id={`demo-btn-secondary-${size}`}
                     variant="secondary"
                     size={size}
-                    onClick={() => {
-                      /* demo */
-                    }}
+                    onClick={() => undefined}
                   >
                     Secondary
                   </Button>
@@ -54,9 +50,7 @@ export function DemoButtonShowcase() {
                     id={`demo-btn-danger-${size}`}
                     variant="danger"
                     size={size}
-                    onClick={() => {
-                      /* demo */
-                    }}
+                    onClick={() => undefined}
                   >
                     Danger
                   </Button>

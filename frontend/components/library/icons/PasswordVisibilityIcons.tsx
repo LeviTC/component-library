@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-/** Ojo abierto: “mostrar contraseña” (cuando está oculta). */
 export function EyeShowIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -19,7 +18,6 @@ export function EyeShowIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Ojo tachado: “ocultar contraseña” (cuando está visible). */
 export function EyeHideIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

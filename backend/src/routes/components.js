@@ -6,9 +6,6 @@ const { authenticateToken } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-/**
- * POST /api/components/track — público
- */
 router.post(
   '/track',
   validateTrackBody,
@@ -27,9 +24,6 @@ router.post(
   }),
 );
 
-/**
- * GET /api/components/stats — público
- */
 router.get(
   '/stats',
   asyncHandler(async (_req, res) => {
@@ -72,9 +66,6 @@ function escapeCsvField(value) {
   return `"${s.replace(/"/g, '""')}"`;
 }
 
-/**
- * GET /api/components/export?format=csv|json — requiere JWT
- */
 router.get(
   '/export',
   authenticateToken,

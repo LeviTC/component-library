@@ -15,7 +15,6 @@ export interface CardProps {
   imageSrc?: string;
   imageAlt?: string;
   borderVariant?: CardBorderVariant;
-  /** @default "primary" */
   tone?: CardTone;
   className?: string;
   as?: "article" | "div" | "section";

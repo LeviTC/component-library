@@ -1,9 +1,3 @@
-/**
- * Tokens de diseño: colores, espaciado, tipografía, radios y primitivos de layout.
- * `buildDesignTokensRootCss()` genera el bloque `:root` inyectado en el layout para
- * que CSS y JS compartan los mismos valores.
- */
-
 export const designTokens = {
   color: {
     black: "#000000",
@@ -15,7 +9,6 @@ export const designTokens = {
     placeholder: "#888888",
     danger: "#991b1b",
     dangerShadow: "#7a0a16",
-    /** Sombra / hover danger (botones) */
     dangerHoverShadow: "#450a0a",
     dangerFocusRing: "#7f1d1d",
     success: "#15803d",
@@ -23,7 +16,6 @@ export const designTokens = {
     neutralMediaBg: "#f5f5f5",
     overlayScrim: "rgba(0, 0, 0, 0.45)",
   },
-  /** Longitudes en px usadas en sombras, bordes y espaciado fijo brutalista */
   spacePx: {
     1: "1px",
     2: "2px",
@@ -47,10 +39,8 @@ export const designTokens = {
     sm: "3px",
     md: "4px",
     lg: "6px",
-    /** Foco / outline (distinto del borde de 3px) */
     outline: "2px",
   },
-  /** Tamaños en `rem` para tipografía fluida */
   fontSizeRem: {
     cardBody: "0.875rem",
     cardBodyUp: "0.9375rem",
@@ -109,7 +99,6 @@ export const designTokens = {
   },
 } as const;
 
-/** Referencias `var(--…)` para estilos en línea o lógica en TS */
 export const cssVars = {
   black: "var(--brutalist-black)",
   white: "var(--brutalist-white)",
@@ -124,9 +113,6 @@ function pxVars(): string {
     .join("\n");
 }
 
-/**
- * Bloque CSS completo para `<style>` en el documento (antes de `brutalist.css`).
- */
 export function buildDesignTokensRootCss(): string {
   const c = designTokens.color;
   const b = designTokens.borderWidth;
@@ -207,5 +193,4 @@ ${pxVars()}
 }`.trim();
 }
 
-/** CSS listo para inyectar en `<head>` (valores alineados con `designTokens`). */
 export const designTokensRootCss = buildDesignTokensRootCss();

@@ -17,11 +17,8 @@ export interface ButtonProps {
   loading?: boolean;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
-  /** @default "button" */
   type?: "button" | "submit" | "reset";
-  /** `id` HTML; si no se pasa, se genera uno estable con `useId`. */
   id?: string;
-  /** Nombre legible en analíticas cuando `children` no es texto (p. ej. solo iconos). */
   trackingLabel?: string;
 }
 

@@ -2,7 +2,6 @@
 @import "tailwindcss";
 @import "../styles/brutalist.css";
 
-/* Colores de página (usan variables de design-tokens.css / lib/design-tokens.ts) */
 :root {
   --background: var(--brutalist-white);
   --foreground: var(--brutalist-black);

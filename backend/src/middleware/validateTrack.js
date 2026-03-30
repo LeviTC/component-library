@@ -2,9 +2,6 @@ function badRequest(res, message) {
   return res.status(400).json({ message });
 }
 
-/**
- * POST /api/components/track
- */
 function validateTrackBody(req, res, next) {
   const { componentName, action, variant, metadata } = req.body ?? {};
 
